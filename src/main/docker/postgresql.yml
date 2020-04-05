@@ -1,0 +1,11 @@
+version: '2'
+services:
+  eisenhower-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/Eisenhower/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=Eisenhower
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
