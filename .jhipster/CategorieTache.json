@@ -1,0 +1,39 @@
+{
+    "name": "CategorieTache",
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "couleur",
+            "fieldType": "Couleur",
+            "fieldValues": "ROUGE,BLEU,VERT,JAUNE,ORANGE,ROSE,GRIS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tache",
+            "otherEntityRelationshipName": "categorie",
+            "relationshipName": "tache"
+        }
+    ],
+    "changelogDate": "20200405102500",
+    "entityTableName": "categorie_tache",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

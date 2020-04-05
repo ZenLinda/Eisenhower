@@ -1,0 +1,38 @@
+{
+    "name": "DegreUrgence",
+    "fields": [
+        {
+            "fieldName": "ordre",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tache",
+            "otherEntityRelationshipName": "degreUrgence",
+            "relationshipName": "tache"
+        }
+    ],
+    "changelogDate": "20200405102100",
+    "entityTableName": "degre_urgence",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,69 @@
+{
+    "name": "Tache",
+    "fields": [
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descritpion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateIdeale",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateAlerte",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateDelai",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "degreImportance",
+            "otherEntityRelationshipName": "tache",
+            "relationshipName": "degreImportance",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "degreUrgence",
+            "otherEntityRelationshipName": "tache",
+            "relationshipName": "degreUrgence",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "matrice",
+            "otherEntityRelationshipName": "tache",
+            "relationshipName": "matrice",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "categorieTache",
+            "otherEntityRelationshipName": "tache",
+            "relationshipName": "categorie",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200405102300",
+    "entityTableName": "tache",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

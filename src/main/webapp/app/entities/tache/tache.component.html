@@ -1,0 +1,103 @@
+<div>
+    <h2 id="page-heading">
+        <span>Taches</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-tache" [routerLink]="['/tache/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Tache
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="taches?.length === 0">
+        <span>No taches found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="taches?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span>ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="libelle"><span>Libelle</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="descritpion"><span>Descritpion</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateIdeale"><span>Date Ideale</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateAlerte"><span>Date Alerte</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="dateDelai"><span>Date Delai</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="degreImportance.id"><span>Degre Importance</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="degreUrgence.id"><span>Degre Urgence</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="matrice.id"><span>Matrice</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="categorie.id"><span>Categorie</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let tache of taches ;trackBy: trackId">
+                    <td><a [routerLink]="['/tache', tache.id, 'view']">{{ tache.id }}</a></td>
+                    <td>{{ tache.libelle }}</td>
+                    <td>{{ tache.descritpion }}</td>
+                    <td>{{ tache.dateIdeale | date:'mediumDate' }}</td>
+                    <td>{{ tache.dateAlerte | date:'mediumDate' }}</td>
+                    <td>{{ tache.dateDelai | date:'mediumDate' }}</td>
+                    <td>
+                        <div *ngIf="tache.degreImportance">
+                            <a [routerLink]="['/degre-importance', tache.degreImportance?.id, 'view']" >{{ tache.degreImportance?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="tache.degreUrgence">
+                            <a [routerLink]="['/degre-urgence', tache.degreUrgence?.id, 'view']" >{{ tache.degreUrgence?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="tache.matrice">
+                            <a [routerLink]="['/matrice', tache.matrice?.id, 'view']" >{{ tache.matrice?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="tache.categorie">
+                            <a [routerLink]="['/categorie-tache', tache.categorie?.id, 'view']" >{{ tache.categorie?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/tache', tache.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/tache', tache.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(tache)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="taches?.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>
