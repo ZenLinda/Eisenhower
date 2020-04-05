@@ -1,0 +1,53 @@
+entity Utilisateur {
+	email String required,
+    identifiant String required
+}
+
+entity DegreUrgence {
+	ordre Integer required,
+	libelle String required
+}
+
+entity DegreImportance {
+	ordre Integer required,
+	libelle String required
+}
+
+entity Tache {
+	libelle String required,
+    descritpion String,
+	dateIdeale LocalDate,
+    dateAlerte LocalDate,
+    dateDelai LocalDate
+}
+
+entity Matrice {
+	libelle String required
+}
+
+entity CategorieTache {
+	libelle String required
+}
+
+enum Couleur {
+	ROUGE,BLEU,VERT,JAUNE,ORANGE,ROSE,GRIS
+}
+
+relationship OneToMany {
+	DegreImportance to Tache{degreImportance},
+    DegreUrgence to Tache{degreUrgence},
+    Matrice to Tache{matrice},
+    CategorieTache to Tache{categorie}
+}
+
+relationship OneToMany {
+	Utilisateur to Matrice{utilisateur},
+}
+
+relationship OneToMany {
+	Couleur to CategorieTache{couleur},
+}
+
+paginate all with pagination
+
+service all with serviceImpl except Employee, Job
