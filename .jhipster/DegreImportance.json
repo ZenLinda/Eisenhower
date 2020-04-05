@@ -1,0 +1,38 @@
+{
+    "name": "DegreImportance",
+    "fields": [
+        {
+            "fieldName": "ordre",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "libelle",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tache",
+            "otherEntityRelationshipName": "degreImportance",
+            "relationshipName": "tache"
+        }
+    ],
+    "changelogDate": "20200405102200",
+    "entityTableName": "degre_importance",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

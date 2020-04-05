@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tache">
+            <h2><span>Tache</span> {{ tache.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Libelle</span></dt>
+                <dd>
+                    <span>{{ tache.libelle }}</span>
+                </dd>
+                <dt><span>Descritpion</span></dt>
+                <dd>
+                    <span>{{ tache.descritpion }}</span>
+                </dd>
+                <dt><span>Date Ideale</span></dt>
+                <dd>
+                    <span>{{ tache.dateIdeale }}</span>
+                </dd>
+                <dt><span>Date Alerte</span></dt>
+                <dd>
+                    <span>{{ tache.dateAlerte }}</span>
+                </dd>
+                <dt><span>Date Delai</span></dt>
+                <dd>
+                    <span>{{ tache.dateDelai }}</span>
+                </dd>
+                <dt><span>Degre Importance</span></dt>
+                <dd>
+                    <div *ngIf="tache.degreImportance">
+                        <a [routerLink]="['/degre-importance', tache.degreImportance?.id, 'view']">{{ tache.degreImportance?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Degre Urgence</span></dt>
+                <dd>
+                    <div *ngIf="tache.degreUrgence">
+                        <a [routerLink]="['/degre-urgence', tache.degreUrgence?.id, 'view']">{{ tache.degreUrgence?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Matrice</span></dt>
+                <dd>
+                    <div *ngIf="tache.matrice">
+                        <a [routerLink]="['/matrice', tache.matrice?.id, 'view']">{{ tache.matrice?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Categorie</span></dt>
+                <dd>
+                    <div *ngIf="tache.categorie">
+                        <a [routerLink]="['/categorie-tache', tache.categorie?.id, 'view']">{{ tache.categorie?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tache', tache.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-tache-heading">Create or edit a Tache</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                           formControlName="libelle"/>
+                    <div *ngIf="editForm.get('libelle')!.invalid && (editForm.get('libelle')!.dirty || editForm.get('libelle')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('libelle')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_descritpion">Descritpion</label>
+                    <input type="text" class="form-control" name="descritpion" id="field_descritpion"
+                           formControlName="descritpion"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateIdeale">Date Ideale</label>
+                    <div class="input-group">
+                        <input id="field_dateIdeale" type="text" class="form-control" name="dateIdeale" ngbDatepicker #dateIdealeDp="ngbDatepicker" formControlName="dateIdeale"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateIdealeDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateAlerte">Date Alerte</label>
+                    <div class="input-group">
+                        <input id="field_dateAlerte" type="text" class="form-control" name="dateAlerte" ngbDatepicker #dateAlerteDp="ngbDatepicker" formControlName="dateAlerte"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateAlerteDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateDelai">Date Delai</label>
+                    <div class="input-group">
+                        <input id="field_dateDelai" type="text" class="form-control" name="dateDelai" ngbDatepicker #dateDelaiDp="ngbDatepicker" formControlName="dateDelai"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDelaiDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_degreImportance">Degre Importance</label>
+                    <select class="form-control" id="field_degreImportance" name="degreImportance" formControlName="degreImportance">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="degreImportanceOption.id === editForm.get('degreImportance')!.value?.id ? editForm.get('degreImportance')!.value : degreImportanceOption" *ngFor="let degreImportanceOption of degreimportances; trackBy: trackById">{{ degreImportanceOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_degreUrgence">Degre Urgence</label>
+                    <select class="form-control" id="field_degreUrgence" name="degreUrgence" formControlName="degreUrgence">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="degreUrgenceOption.id === editForm.get('degreUrgence')!.value?.id ? editForm.get('degreUrgence')!.value : degreUrgenceOption" *ngFor="let degreUrgenceOption of degreurgences; trackBy: trackById">{{ degreUrgenceOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_matrice">Matrice</label>
+                    <select class="form-control" id="field_matrice" name="matrice" formControlName="matrice">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="matriceOption.id === editForm.get('matrice')!.value?.id ? editForm.get('matrice')!.value : matriceOption" *ngFor="let matriceOption of matrices; trackBy: trackById">{{ matriceOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_categorie">Categorie</label>
+                    <select class="form-control" id="field_categorie" name="categorie" formControlName="categorie">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="categorieTacheOption.id === editForm.get('categorie')!.value?.id ? editForm.get('categorie')!.value : categorieTacheOption" *ngFor="let categorieTacheOption of categorietaches; trackBy: trackById">{{ categorieTacheOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

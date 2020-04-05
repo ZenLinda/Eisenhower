@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity Tache.
+    -->
+    <changeSet id="20200405102300-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="degre_importance_id"
+                                 baseTableName="tache"
+                                 constraintName="fk_tache_degre_importance_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="degre_importance"/>
+
+        <addForeignKeyConstraint baseColumnNames="degre_urgence_id"
+                                 baseTableName="tache"
+                                 constraintName="fk_tache_degre_urgence_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="degre_urgence"/>
+
+        <addForeignKeyConstraint baseColumnNames="matrice_id"
+                                 baseTableName="tache"
+                                 constraintName="fk_tache_matrice_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="matrice"/>
+
+        <addForeignKeyConstraint baseColumnNames="categorie_id"
+                                 baseTableName="tache"
+                                 constraintName="fk_tache_categorie_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categorie_tache"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -42,6 +42,17 @@ public class CacheConfiguration {
             createCache(cm, com.zenlinda.eisenhower.domain.User.class.getName() + ".authorities");
             createCache(cm, com.zenlinda.eisenhower.domain.PersistentToken.class.getName());
             createCache(cm, com.zenlinda.eisenhower.domain.User.class.getName() + ".persistentTokens");
+            createCache(cm, com.zenlinda.eisenhower.domain.Utilisateur.class.getName());
+            createCache(cm, com.zenlinda.eisenhower.domain.Utilisateur.class.getName() + ".matrices");
+            createCache(cm, com.zenlinda.eisenhower.domain.DegreUrgence.class.getName());
+            createCache(cm, com.zenlinda.eisenhower.domain.DegreUrgence.class.getName() + ".taches");
+            createCache(cm, com.zenlinda.eisenhower.domain.DegreImportance.class.getName());
+            createCache(cm, com.zenlinda.eisenhower.domain.DegreImportance.class.getName() + ".taches");
+            createCache(cm, com.zenlinda.eisenhower.domain.Tache.class.getName());
+            createCache(cm, com.zenlinda.eisenhower.domain.Matrice.class.getName());
+            createCache(cm, com.zenlinda.eisenhower.domain.Matrice.class.getName() + ".taches");
+            createCache(cm, com.zenlinda.eisenhower.domain.CategorieTache.class.getName());
+            createCache(cm, com.zenlinda.eisenhower.domain.CategorieTache.class.getName() + ".taches");
             // jhipster-needle-ehcache-add-entry
         };
     }

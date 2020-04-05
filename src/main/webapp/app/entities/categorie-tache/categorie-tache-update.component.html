@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-categorie-tache-heading">Create or edit a Categorie Tache</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_libelle">Libelle</label>
+                    <input type="text" class="form-control" name="libelle" id="field_libelle"
+                           formControlName="libelle"/>
+                    <div *ngIf="editForm.get('libelle')!.invalid && (editForm.get('libelle')!.dirty || editForm.get('libelle')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('libelle')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_couleur">Couleur</label>
+                    <select class="form-control" name="couleur" formControlName="couleur" id="field_couleur">
+                        <option value="ROUGE">ROUGE</option>
+                        <option value="BLEU">BLEU</option>
+                        <option value="VERT">VERT</option>
+                        <option value="JAUNE">JAUNE</option>
+                        <option value="ORANGE">ORANGE</option>
+                        <option value="ROSE">ROSE</option>
+                        <option value="GRIS">GRIS</option>
+                    </select>
+                    <div *ngIf="editForm.get('couleur')!.invalid && (editForm.get('couleur')!.dirty || editForm.get('couleur')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('couleur')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
